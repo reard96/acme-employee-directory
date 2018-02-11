@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Acme Employee Directory</title>
+  <link rel='stylesheet' href='/vendor/bootstrap/dist/css/bootstrap.css'></link>
 </head>
 <body>
-
+  <div class='container'>
+    <h1>ACME Employee Directory</h1>
+    <h2>{{ title }}</h2>
+    <p>We are a growing company, we currently have ____ employees and ____ nicknames!</p>
+    <ul class='nav nav-tabs'>
+      <li class='nav-item'>
+        <a href='/' class='nav-link{% if path === '/'%} active{% endif %}'>Home</a>
+      </li>
+      <li class='nav-item'>
+        <a href='/employees' class='nav-link{% if path === '/employees'%} active{% endif %}'>Employees</a>
+      </li>
+    </ul>
+    {% block content %}
+    {% endblock %}
+</div>
 </body>
 </html>

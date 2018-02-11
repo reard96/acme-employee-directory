@@ -2,11 +2,11 @@ const _conn = require('./conn');
 const Employee = require('./Employee');
 
 const initialEmployees = [
-                          {firstName: 'ted', lastName: 'mosby'},
-                          {firstName: 'barney', lastName: 'stinson'},
-                          {firstName: 'lily', lastName: 'aldrin'},
-                          {firstName: 'marshall', lastName: 'eriksen'},
-                          {firstName: 'robin', lastName: 'sherbatsky'}
+                          {firstName: 'Ted', lastName: 'Mosby'},
+                          {firstName: 'Barney', lastName: 'Stinson'},
+                          {firstName: 'Lily', lastName: 'Aldrin'},
+                          {firstName: 'Marshall', lastName: 'Eriksen'},
+                          {firstName: 'Robin', lastName: 'Sherbatsky'}
                          ];
 
 const sync = () => {
