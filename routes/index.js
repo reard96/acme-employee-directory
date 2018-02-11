@@ -6,13 +6,11 @@ const { Employee } = db.models; // const Employee = db.models.Employee
 module.exports = app;
 
 app.get('/', (req, res, next) => {
-  res.render('index');
-  next();
-  // Employee.findAll({})
-  //   .then(employees => {
-  //     res.render('employees', { employees, title: 'Home' });
-  //   })
-  //   .catch(next);
+  Employee.findAll({})
+    .then(() => {
+      res.render('index', { title: 'Home' });
+    })
+    .catch(next);
 });
 
 app.get('/employees', (req, res, next) => {
@@ -25,23 +23,32 @@ app.get('/employees', (req, res, next) => {
 
 app.get('/employees/:id', (req, res, next) => {
   Employee.findById(req.params.id)
+    // include logic to send 404 error if employee isn't found
     .then(employee => {
       res.render('employee', { title: `Employee: ${ employee.fullName }`, employee });
     })
     .catch(next);
 });
 
-// app.post('/employees', (req, res, next) => {
-//   Employee.create(req.body)
-//     .then(() => res.redirect('/employees'))
-//     .catch(next);
-// });
+app.put('/employees/:id', (req, res, next) => {
+  Employee.findById(req.params.id)
+    .then(employee => {
+      Object.assign(employee, req.body);
+      return employee.save();
+    })
+    .then(employee => {
+      res.redirect('/employees');
+    })
+    .catch(next);
+});
 
-app.delete('/:id', (req, res, next) => {
+app.delete('/employees/:id', (req, res, next) => {
   Employee.findById(req.params.id)
     .then(employee => {
       employee.destroy();
     })
-    .then(() => res.redirect('/employees'))
+    .then(employee => {
+      res.redirect('/employees');
+    })
     .catch(next);
 });

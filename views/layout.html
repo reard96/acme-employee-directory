@@ -8,7 +8,7 @@
   <div class='container'>
     <h1>ACME Employee Directory</h1>
     <h2>{{ title }}</h2>
-    <p>We are a growing company, we currently have ____ employees and ____ nicknames!</p>
+    <p>We are a growing company, we currently have {{ employeeCount }} employees and {{ nicknameCount }} nicknames!</p>
     <ul class='nav nav-tabs'>
       <li class='nav-item'>
         <a href='/' class='nav-link{% if path === '/'%} active{% endif %}'>Home</a>

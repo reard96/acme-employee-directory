@@ -3,5 +3,13 @@
   <div>
   {{ employee.fullName }}'s page
   </div>
+  <form method='POST' action='/employees/{{employee.id}}'>
+    <input name='firstName' value='{{ employee.firstName }}' class='form-control' />
+    <input name='lastName' value='{{ employee.lastName }}' class='form-control' />
+    <input name='lastName' value='{{ employee.nicknames }}' class='form-control' />
+    <button>Update Employee</button>
+  </form>
+  <!-- logic for delete button -->
+  <form method='POST' ></form>
 <a href='/employees'>Back to all employees</a>
 {% endblock %}

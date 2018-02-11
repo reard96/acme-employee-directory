@@ -19,12 +19,24 @@ app.use('/vendor', express.static(path.join(__dirname, 'node_modules')));
 app.use(require('method-override')('_method'));
 
 // so I can deliver the image file
-app.use(express.static('/'));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   res.locals.path = req.url;
   next();
+});
+
+app.use((req, res, next) => {
+  Employee.findAll({})
+    .then(employees => {
+      res.locals.employeeCount = employees.length;
+      const nicknameCount = employees.reduceRight((sum, employee) => {
+        return sum + employee.nicknames.length;
+      }, 0);
+      res.locals.nicknameCount = nicknameCount;
+      next();
+    })
+    .catch(next);
 });
 
 app.use('/', require('./routes/index.js'));

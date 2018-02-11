@@ -2,11 +2,11 @@ const _conn = require('./conn');
 const Employee = require('./Employee');
 
 const initialEmployees = [
-                          {firstName: 'Ted', lastName: 'Mosby'},
-                          {firstName: 'Barney', lastName: 'Stinson'},
-                          {firstName: 'Lily', lastName: 'Aldrin'},
-                          {firstName: 'Marshall', lastName: 'Eriksen'},
-                          {firstName: 'Robin', lastName: 'Sherbatsky'}
+                          {firstName: 'Ted', lastName: 'Mosby', nicknames: ['T-Dog', 'Schmosby']},
+                          {firstName: 'Barney', lastName: 'Stinson', nicknames: ['Legendary', 'The Barnacle']},
+                          {firstName: 'Lily', lastName: 'Aldrin', nicknames: ['Little Fudge', 'Mom']},
+                          {firstName: 'Marshall', lastName: 'Eriksen', nicknames: ['Big Fudge', 'Judge Fudge']},
+                          {firstName: 'Robin', lastName: 'Sherbatsky', nicknames: ['Canadian']}
                          ];
 
 const sync = () => {
@@ -14,7 +14,7 @@ const sync = () => {
 };
 
 const seedEmployees = () => {
-  return Promise.all(initialEmployees.map(worker => Employee.create(worker)));
+  return Promise.all(initialEmployees.map(employee => Employee.create(employee)));
 };
 
 const seed = () => {

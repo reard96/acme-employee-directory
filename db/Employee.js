@@ -17,10 +17,23 @@ const Employee = _conn.define('employee', {
     validate: {
       notEmpty: true
     }
+  },
+  nicknames: {
+    type: Sql.ARRAY(Sql.STRING),
+    defaultValue: [],
+    set: function(val) {
+      if (typeof val === 'string') {
+        // need to edit this
+        const nicknames = val.split(',').filter(nickname => nickname.length > 0);
+        this.setDataValue('nicknames', val.split(','));
+      } else {
+        this.setDataValue('nicknames', val);
+      }
+    }
   }}, {
   getterMethods: {
     fullName() {
-      return this.firstName + ' ' + this.lastName;
+      return `${this.firstName} ${this.lastName}`;
     }
   }
 });
