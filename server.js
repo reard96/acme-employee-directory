@@ -18,6 +18,10 @@ app.engine('html', nunjucks.render);
 app.use('/vendor', express.static(path.join(__dirname, 'node_modules')));
 app.use(require('method-override')('_method'));
 
+// so I can deliver the image file
+app.use(express.static('/'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use((req, res, next) => {
   res.locals.path = req.url;
   next();

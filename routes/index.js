@@ -6,11 +6,13 @@ const { Employee } = db.models; // const Employee = db.models.Employee
 module.exports = app;
 
 app.get('/', (req, res, next) => {
-  Employee.findAll({})
-    .then(employees => {
-      res.render('employees', { employees, title: 'Home' });
-    })
-    .catch(next);
+  res.render('index');
+  next();
+  // Employee.findAll({})
+  //   .then(employees => {
+  //     res.render('employees', { employees, title: 'Home' });
+  //   })
+  //   .catch(next);
 });
 
 app.get('/employees', (req, res, next) => {
@@ -29,17 +31,17 @@ app.get('/employees/:id', (req, res, next) => {
     .catch(next);
 });
 
-// app.delete('/:id', (req, res, next) => {
-//   employee.findById(req.params.id)
-//     .then(currentEmployee => {
-//       currentEmployee.destroy();
-//     })
-//     .then(() => res.redirect('/users'))
+// app.post('/employees', (req, res, next) => {
+//   Employee.create(req.body)
+//     .then(() => res.redirect('/employees'))
 //     .catch(next);
 // });
 
-app.post('/', (req, res, next) => {
-  Employee.create(req.body)
+app.delete('/:id', (req, res, next) => {
+  Employee.findById(req.params.id)
+    .then(employee => {
+      employee.destroy();
+    })
     .then(() => res.redirect('/employees'))
     .catch(next);
 });
