@@ -1,6 +1,17 @@
-const app = require('express')();
+const express = require('express');
 // const path = require('path');
 const db = require('./db');
+const { Employee } = db.models; // const Employee = db.models.Employee
+
+const app = express();
+
+app.get('/', (req, res, next)=>{
+  Employee.findAll()
+    .then( employees => {
+      res.send(employees);
+    });
+});
+
 // const nunjucks = require('nunjucks');
 
 // nunjucks.configure({ noCache: true });
@@ -20,7 +31,7 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 //   next();
 // });
 
-const employee = db.models.Employee;
+// const employee = db.models.Employee;
 
 db.sync()
   .then(() => db.seed());

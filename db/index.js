@@ -1,26 +1,5 @@
-// const conn = require('./conn.js');
-
-const Sql = require('sequelize');
-
-const _conn = new Sql(process.env.DATABASE_URL);
-
-const Employee = _conn.define('employee', {
-  firstName: {
-    type: Sql.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
-  },
-  lastName: {
-    type: Sql.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
-  }
-  // to add nicknames
-});
+const _conn = require('./conn');
+const Employee = require('./Employee');
 
 const initialEmployees = [
                           {firstName: 'ted', lastName: 'mosby'},
@@ -35,7 +14,7 @@ const sync = () => {
 };
 
 const seedEmployees = () => {
-  return Promise.all(initialEmployees.map(employee => Employee.create(employee)));
+  return Promise.all(initialEmployees.map(worker => Employee.create(worker)));
 };
 
 const seed = () => {
