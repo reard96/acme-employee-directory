@@ -3,13 +3,17 @@
   <div>
   {{ employee.fullName }}'s page
   </div>
-  <form method='POST' action='/employees/{{employee.id}}'>
-    <input name='firstName' value='{{ employee.firstName }}' class='form-control' />
-    <input name='lastName' value='{{ employee.lastName }}' class='form-control' />
-    <input name='lastName' value='{{ employee.nicknames }}' class='form-control' />
-    <button>Update Employee</button>
-  </form>
-  <!-- logic for delete button -->
-  <form method='POST' ></form>
-<a href='/employees'>Back to all employees</a>
+  <div style='float: left; width: 50%; border: solid 1px black; border-radius: 5px; padding: 10px'>
+    <form method='POST' action='/employees/{{employee.id}}?_method=PUT'>
+      <input name='firstName' value='{{ employee.firstName }}' class='form-control' /><br />
+      <input name='lastName' value='{{ employee.lastName }}' class='form-control' /><br />
+      <input name='lastName' value='{{ employee.nicknames }}' class='form-control' /><br />
+      <button class='btn btn-primary'>Update Employee</button>
+    </form>
+    <form method='POST' action='/employees/{{employee.id}}?_method=DELETE'>
+      <button class='btn btn-danger' style='margin-top: 10px'>Fire {{ employee.fullName }}!</button>
+    </form>
+    <a href='/employees'>Back to all employees</a>
+</div>
+
 {% endblock %}

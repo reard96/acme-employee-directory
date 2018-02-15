@@ -23,50 +23,19 @@ const Employee = _conn.define('employee', {
     defaultValue: [],
     set: function(val) {
       if (typeof val === 'string') {
-        // need to edit this
-        const nicknames = val.split(',').filter(nickname => nickname.length > 0);
-        this.setDataValue('nicknames', val.split(','));
+        let nicknames = val.split(',').filter(nickname => nickname.length > 0);
+        this.setDataValue('nicknames', nicknames);
       } else {
         this.setDataValue('nicknames', val);
       }
     }
-  }}, {
+  }
+}, {
   getterMethods: {
     fullName() {
       return `${this.firstName} ${this.lastName}`;
     }
   }
 });
-//   setterMethods: {
-//     fullName(value) {
-//       const names = value.split(' ');
-//       this.setDataValue('firstName', names.slice(0, -1).join(' '));
-//       this.setDataValue('lastName', names.slice(-1).join(' '));
-//     },
-//   }
-// }
-  // to add nicknames
-
 
 module.exports = Employee;
-
-
-// const Foo = sequelize.define('foo', {
-//   firstname: Sequelize.STRING,
-//   lastname: Sequelize.STRING
-// }, {
-//   getterMethods: {
-//     fullName() {
-//       return this.firstname + ' ' + this.lastname
-//     }
-//   },
-
-//   setterMethods: {
-//     fullName(value) {
-//       const names = value.split(' ');
-
-//       this.setDataValue('firstname', names.slice(0, -1).join(' '));
-//       this.setDataValue('lastname', names.slice(-1).join(' '));
-//     },
-//   }
-// });

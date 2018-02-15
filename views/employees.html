@@ -1,34 +1,20 @@
 {% extends './layout.html' %}
 {% block content %}
 <h2>Employees</h2>
+<form method='POST' style='border: solid 1px black; border-radius: 5px; padding: 10px;'>
+  <input name='firstName' placeholder='First name:'/>
+  <input name='lastName' placeholder='Last name:'/>
+  <input name='nicknames' placeholder='Nicknames:'/>
+  <button class='btn btn-primary'>Create A New Employee</button>
+</form>
 <ul class='list-group'>
   {% for employee in employees %}
-    <li class='list-group-item' href='/employees/{{employee.id}}'>
-      {{ employee.fullName }} has {{ employee.nicknames.length }} nickname(s)
+    <li class='list-group-item'>
+      <a href='/employees/{{employee.id}}'>
+        {{ employee.fullName }}
+      </a>
+      has {{ employee.nicknames.length }} nickname(s)
     </li>
   {% endfor %}
 </ul>
 {% endblock %}
-
-
-  <!-- <form action='/employees' method='POST'>
-    <div class='form-group'>
-      <label>first name</label>
-      <input class='form-control' name='firstName' placeholder='employee first name'></input>
-    </div>
-    <div class='form-group'>
-      <label>last name</label>
-      <input class='form-control' name='lastName' placeholder='employee last name'></input>
-    </div>
-    <button class='btn btn-primary'>Create Employee</button>
-  <ul class='list-group'>
-    {% for employee in employees %}
-      <li class='list-group-item' href='/employees/{{employee.id}}'>
-        {{ employee.fullName }}
-        <form method='POST' action='/employees/{{employee.id}}?_method=DELETE'>
-          <button class='btn btn-danger'>Fire Employee</button>
-        </form>
-      </li>
-    {% endfor %}
-  </ul>
-</form>  -->
